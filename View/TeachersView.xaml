@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="WpfDesignerAss.View.TeachersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfDesignerAss.View"
+             xmlns:vm="clr-namespace:WpfDesignerAss.ViewModel"
+             xmlns:bh="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             DataContext="{Binding Source={StaticResource Locator}, Path=Teachers}">
+    <!---->
+    <!--<UserControl.DataContext>
+        <vm:TeachersViewModel/>
+    </UserControl.DataContext>-->
+    
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+        <Button Padding="5" Margin="5" Background="BurlyWood"  Grid.Row="0" Content="Get Students by Teacher" Command="{Binding TeacherStudentsCommand}"/>
+        <ListView x:Name="lvTeachers" Padding="5" Margin="5" Grid.Row="1" ItemsSource="{Binding Teachers}" DisplayMemberPath="Name"
+                      SelectedItem="{Binding SelectedTeacher, Mode=TwoWay}"/>
+            <Button Padding="5" Margin="5" Grid.Row="2" Content="Add Course" Command="{Binding AddCourseCommand}"/>
+            <Button Padding="5" Margin="5" Grid.Row="3" Content="Remove Course" Command="{Binding RemoveCourseCommand}"/>
+            <ComboBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="5" Margin="5" Grid.Row="4" ItemsSource="{Binding CourseTypes}" SelectedItem="{Binding SelectedCourse}"/>
+        <Button Padding="5" Margin="5" Grid.Row="5" Content="Get Teachers Courses" Command="{Binding TeacherCoursesCommand}"/>
+            <!--<TextBlock Padding="5" Margin="5" Grid.Row="6" Text="{Binding ElementName=lvTeachers, NotifyOnTargetUpdated=True, Path=SelectedItem.CourseTeach, Mode=TwoWay}"/>-->
+        <TextBlock Padding="5" Margin="5" Grid.Row="6" Text="{Binding TeachersCourses, Mode=TwoWay}"/>
+        </Grid>
+</UserControl>
